@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>README</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.line-block{white-space: pre-line;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="laboratorio-2---llamadas-al-sistema">Laboratorio 2 - Llamadas al Sistema</h1>
+<p><em>Nota</em>: pueden escribir las respuestas para las preguntas que se piden en algunos de los ejercicio en un archivo de texto con nombre <code>respuestas_ejX.txt</code>, donde <em>X</em> es el número de ejercicio. Por ejemplo: <code>respuestas_ej2.txt</code>.</p>
+<h2 id="ejercicio-1">Ejercicio 1</h2>
+<p>El programa <code>hola.c</code> imprime el mensaje <code>hola mundo</code> en la <em>salida estándar</em>, utilizando la función de biblioteca <a href="http://man7.org/linux/man-pages/man3/printf.3.html"><code>printf()</code></a>. Compilarlo con el comando <code>make hola</code>. Vamos a ejecutarlo utilizando el comando <code>strace</code>, que nos permite ver que llamadas al sistema utiliza el programa:</p>
+<pre><code>$ strace bin/hola
+</code></pre>
+<p>Si el comando <code>strace</code> no esta instalado en el sistema, utilizar el administrador de paquetes de la distribución para instalarlo. Por ejemplo, en Ubuntu el comando es <code>sudo apt install strace</code>.</p>
+<p>Responder:</p>
+<ol>
+<li>Identificar las llamadas al sistema utilizadas por las funciones de biblioteca empleadas en el programa.</li>
+<li>¿Cual es la llamada al sistema que se encarga de imprimir el mensaje en la <em>salida estándar</em>?</li>
+</ol>
+<h2 id="ejercicio-2">Ejercicio 2</h2>
+<p>Completar el programa <code>ej2.c</code>, de manera que lea el texto introducido desde la entrada estandar, haga un eco en la salida estándar y lo guarde en el archivo indicado en la linea de comandos. Si el archivo indicado no existe, se debe crearlo. De existir, se lo debe sobreescribir. Utilizar unicamente las siguientes llamadas al sistema: <a href="http://man7.org/linux/man-pages/man2/read.2.html"><code>read()</code></a>, <a href="http://man7.org/linux/man-pages/man2/open.2.html"><code>open()</code></a>, <a href="http://man7.org/linux/man-pages/man2/write.2.html"><code>write()</code></a> y <a href="http://man7.org/linux/man-pages/man2/close.2.html"><code>close()</code></a>.</p>
+<h2 id="ejercicio-3">Ejercicio 3</h2>
+<p>Completar el programa <code>ej3.c</code> para que cree <em>n</em> procesos hijos, utilizando la llamada al sistema <a href="http://man7.org/linux/man-pages/man2/fork.2.html"><code>fork()</code></a>. El número <em>n</em> debe ser indicado mediante un parámetro en la línea de comandos. Cada proceso hijo debe imprimir por la salida estándar su <em>identificador de proceso</em> (PID) y finalizar, mediante la llamada al sistema <a href="http://man7.org/linux/man-pages/man2/exit.3.html"><code>exit()</code></a>. Para obtener el PID emplear la llamada al sistema <a href="http://man7.org/linux/man-pages/man2/getpid.2.html"><code>getpid()</code></a>. El proceso padre debe esperar a que todos sus procesos hijos finalicen, y luego imprimir un mensaje. Utilizar la llamada al sistema <a href="http://man7.org/linux/man-pages/man2/waitpid.2.html"><code>waitpid()</code></a> para esperar a que los procesos hijos terminen.</p>
+<p>Por ejemplo, si se ejecuta el programa indicando que se creen 3 hijos, debe obtenerse una salida similar a la siguiente:</p>
+<pre><code>$ ej1 3
+Hijo 3431
+Hijo 3434
+Hijo 3432
+Fin ej1
+$
+</code></pre>
+<h2 id="ejercicio-4">Ejercicio 4</h2>
+<p>En esta parte del laboratorio se implementarán varias funcionalidades al <code>shell 6.828</code>, del curso <em>6.828 Operating Systems Engineering</em> del MIT. El código del intérprete lo pueden encontrar en el archivo <code>sh.c</code>.</p>
+<h3 id="ejecución-de-comandos">Ejecución de comandos</h3>
+<p>Implementar la ejecución de comandos, por ejemplo <code>ls</code>. El parser genera una estructura <code>execcmd</code> que contiene el comando a ejecutar y los parámetros que se le hayan indicado. Deben completar el caso <code>' '</code> en la función <code>runcmd</code>. Para ejecutar el comando, utilizar la llamada a sistema <a href="http://man7.org/linux/man-pages/man3/exec.3.html"><code>execv()</code></a>. Se debe imprimir un mensaje de error si <code>execv()</code> falla, utilizando la función <a href="http://man7.org/linux/man-pages/man3/perror.3.html"><code>perror()</code></a>.</p>
+<h3 id="redirección-de-es">Redirección de E/S</h3>
+<p>Implementar redirección de E/S mediante los operadores <code>&lt;</code> y <code>&gt;</code>, de manera que el shell permita ejecutar comandos como:</p>
+<pre><code>$ echo &quot;sistemas operativos&quot; &gt; x.txt
+$ cat &lt; x.txt
+sistemas operativos
+$
+</code></pre>
+<p>El parser implementado en el shell ya reconoce estos operadores, y genera una estructura <code>redircmd</code> con los datos necesarios para implementar la redirección. Deben completar el código necesario en la función <code>runcmd()</code>. Consultar las llamadas al sistema <a href="http://man7.org/linux/man-pages/man2/open.2.html"><code>open()</code></a> y <a href="http://man7.org/linux/man-pages/man2/close.2.html"><code>close()</code></a>. Imprimir un mensaje de error si alguna de las llamadas al sistema empleadas falla con <a href="http://man7.org/linux/man-pages/man3/perror.3.html"><code>perror()</code></a>. Verificar los permisos con los que se crea el archivo.</p>
+<h3 id="tuberías-pipes">Tuberías (pipes)</h3>
+<p>Implementar soporte de tuberías, de manera que se pueda ejecutar un comando como:</p>
+<pre><code>$ ls | wc
+1   1   10
+$
+</code></pre>
+<p>El parser ya reconoce el operador <code>|</code>, y guarda todos los datos requeridos para implementar la tubería en una estructura llamada <code>pipecmd</code>. Deben agregar el código necesario en la función <code>runcmd()</code>. Las llamadas al sistema <a href="http://man7.org/linux/man-pages/man2/pipe.2.html"><code>pipe()</code></a>, <a href="http://man7.org/linux/man-pages/man2/fork.2.html"><code>fork()</code></a>, <a href="http://man7.org/linux/man-pages/man2/close.2.html"><code>close()</code></a> y <a href="http://man7.org/linux/man-pages/man2/pipe.2.html"><code>dup()</code></a> serán útiles. Una vez implementado, verificar que se pueda ejecutar el comando de ejemplo anterior (puede ser necesario pasar el path completo a los comandos, dependiendo de cómo se haya implementado la ejecución de comandos).</p>
+<h3 id="opcional">Opcional:</h3>
+<p>Agregar al shell una de las siguientes funcionalidades:</p>
+<ul>
+<li>Listas de comandos (cada comando se separa con un punto y coma).</li>
+<li>Historial de comandos.</li>
+<li>Ejecución en segundo plano (agregando el operador <code>&amp;</code> al final del comando).</li>
+</ul>
+<hr />
+<p>¡Fin del Laboratorio 2!</p>
+</body>
+</html>
