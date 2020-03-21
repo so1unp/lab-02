@@ -1,7 +1,7 @@
 
 # Laboratorio 2 - Llamadas al Sistema
 
-_Nota_: pueden escribir las respuestas para las preguntas que se piden en algunos de los ejercicio en un archivo de texto con nombre `respuestas_ejX.txt`, donde *X* es el número de ejercicio. Por ejemplo: `respuestas_ej2.txt`.
+_Nota_: las respuestas a las preguntas en los ejercicios pueden incluirlas en un archivo de texto con el nombre `respuestas.txt`.
 
 ## Ejercicio 1 
 El programa `hola.c` imprime el mensaje `hola mundo` en la _salida estándar_, utilizando la función de biblioteca [`printf()`](http://man7.org/linux/man-pages/man3/printf.3.html). Compilarlo con el comando `make hola`. Vamos a ejecutarlo utilizando el comando `strace`, que nos permite ver que llamadas al sistema utiliza el programa: 
