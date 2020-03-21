@@ -4,14 +4,14 @@
 _Nota_: las respuestas a las preguntas en los ejercicios pueden incluirlas en un archivo de texto con el nombre `respuestas.txt`.
 
 ## Ejercicio 1 
-El programa `hola.c` imprime el mensaje `hola mundo` en la _salida estándar_, utilizando la función de biblioteca [`printf()`](http://man7.org/linux/man-pages/man3/printf.3.html). Compilarlo con el comando `make hola`. Vamos a ejecutarlo utilizando el comando `strace`, que nos permite ver que llamadas al sistema utiliza el programa: 
+El programa `hola.c` imprime el mensaje `¡Hola Mundo!` en la _salida estándar_, utilizando la función de biblioteca [`printf()`](http://man7.org/linux/man-pages/man3/printf.3.html). Compilarlo con el comando `make hola` y ejecutarlo utilizando el comando `strace`, para  ver que llamadas al sistema utiliza el programa:
 ```
+$ make hola
 $ strace bin/hola
 ```
 
-Si el comando `strace` no esta instalado en el sistema, utilizar el administrador de paquetes de la distribución para instalarlo. Por ejemplo, en Ubuntu el comando es `sudo apt install strace`.
-
 Responder:
+
 1. Identificar las llamadas al sistema utilizadas por las funciones de biblioteca empleadas en el programa.
 2. ¿Cual es la llamada al sistema que se encarga de imprimir el mensaje en la _salida estándar_?
 
