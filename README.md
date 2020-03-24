@@ -43,7 +43,35 @@ Se deben tener en cuenta las siguientes consideraciones:
 * Si `archivo-nuevo` ya existe, se sobreescribe.
 * Los permisos de `archivo-nuevo` deben ser `0644`.
 
-## Ejercicio 3 - Señales
+## Ejercicio 3 - Universalidad de E/S
+
+Una de las características de los sistemas operativos tipo Unix, como Linux, es el de _universalidad de E/S_. Esto significa que todos los dispositivos del sistema son tratados como archivos. Por lo tanto, mediante las llamadas al sistema `open`, `close`, `read` y `write` podemos acceder a cualquiera de ellos (siempre que tengamos los permisos necesarios).
+
+Para probar esto, primero vamos a ejecutar el comando `who am i`, para averiguar el identificador de la terminal en la que estamos trabajando:
+
+```bash
+$ who am i
+user       pts/0        2020-03-24 09:48 (192.168.16.10)
+$
+```
+
+La segunda columna indica la terminal, en este caso `pts/0`. Como los dispositivos son tratados como archivos, la terminal tiene su propia entrada en el sistema de archivos, en `/dev/pts/0`. Probar ejecutar el siguiente comando (utilizando el identificador correspondiente que ven al ejecutar `who am i`):
+
+```bash
+$ file /dev/pts/0
+/dev/pts/0: character special
+$
+```
+
+El comando `file` permite identificar el tipo de un archivo. En este caso nos indica que `/dev/pts/0` es un archivo especial de caracteres.
+
+Identificada entonces la terminal en donde estamos trabajando, responder lo siguiente:
+
+* ¿Qué ocurre al ejecutar el comando `copy ej1.c /dev/pts/0`?
+
+* ¿Qué sucede al ejecutar `copy /dev/pts/0 test.txt`? (Usar `Ctrl+D` para salir)
+
+## Ejercicio 4 - Señales
 
 Completar el programa `ouch.c` para que cada vez que reciba la señal `SIGINT` imprima por la _salida estándar_ `Ouch!`. El programa debe terminar luego recibir 5 señales.
 
@@ -51,7 +79,7 @@ Para atrapar la señal se debe emplear la llamada al sistema [`sigaction()`](htt
 
 La señal `SIGINT` puede ser disparada desde el teclado, mediante la combinación `Ctrl+C` (que en la jerga se indica como `^C`). Para terminar la ejecución del programa, utilizar `Ctrl+\`.
 
-## Ejercicio 4 - Traza de llamadas al sistema
+## Ejercicio 5 - Traza de llamadas al sistema
 
 En este ejercicio, se modificara el _kernel_ de _xv6_ para que imprima un mensaje cada vez que se invoca una llamada al sistema. Este mensaje indicará el nombre de la llamada al sistema ejecutada y el valor que retorna.
 
@@ -86,7 +114,7 @@ Agregar en el directorio del Laboratorio:
 
 Recordar ejecutar `git add` para agregarlo los nuevos archivos al _commit_.
 
-## Ejercicio 5 - Implementar una nueva llamada al sistema
+## Ejercicio 6 - Implementar una nueva llamada al sistema
 
 Este ejercicio vamos a modificar nuevamente el _kernel_ de a _xv6_, para agregar una **nueva llamada al sistema** que retorne al usuario la fecha UTC actual del sistema.
 
