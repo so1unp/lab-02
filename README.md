@@ -1,13 +1,14 @@
-
 # Laboratorio 2 - Llamadas al Sistema
+
+En este laboratorio vamos a ver las llamadas al sistema relacionadas con archivos y señales en Linux. Además, se verá la implementación de las llamadas al sistema en _xv6_.
 
 _Nota_: las respuestas a las preguntas en los ejercicios pueden incluirlas en un archivo de texto con el nombre `respuestas.txt`.
 
 ## Ejercicio 1
 
-El programa `hola.c` imprime el mensaje `¡Hola Mundo!` en la _salida estándar_, utilizando la función de biblioteca [`printf()`](http://man7.org/linux/man-pages/man3/printf.3.html). 
+El programa `hola.c` imprime el mensaje `¡Hola Mundo!` en la _salida estándar_, utilizando la función de biblioteca [`printf()`](http://man7.org/linux/man-pages/man3/printf.3.html).
 
-Compilarlo con el comando `make hola` y ejecutarlo utilizando el comando `strace`, como se indica a continuación, para ver cuales son llamadas al sistema que utiliza el programa:
+Compilar el programa con el comando `make hola` y ejecutarlo utilizando el comando `strace`, como se indica a continuación, para ver cuales son llamadas al sistema que utiliza:
 
 ```bash
 $ make hola
@@ -18,16 +19,23 @@ $ strace bin/hola > /dev/null
 
 Responder:
 
-1. Identificar las llamadas al sistema utilizadas por las funciones de biblioteca empleadas en el programa, `printf` y `exit`.
+1. Identificar cuáles son las llamadas al sistema utilizadas por las funciones de biblioteca `printf` y `exit`.
 2. Describir los parámetros que se utilizan en la invocación de la llamada al sistema que se encarga de imprimir el mensaje en la _salida estándar_.
 
 ## Ejercicio 2 - Llamadas al sistema para archivos
 
-Completar el programa `copy.c` para que permita realizar copias de un archivo:
+Completar el programa `copy.c` para que permita realizar una copia de un archivo:
 
 ```bash
 $ copy archivo-original archivo-nuevo
 ```
+
+Para implementarlo se deben utilizar **únicamente** las siguientes llamadas al sistema:
+
+* [`open()`](http://man7.org/linux/man-pages/man2/open.2.html)
+* [`read()`](http://man7.org/linux/man-pages/man2/read.2.html)
+* [`write()`](http://man7.org/linux/man-pages/man2/write.2.html)
+* [`close()`](http://man7.org/linux/man-pages/man2/close.2.html)
 
 Se deben tener en cuenta las siguientes consideraciones:
 
@@ -35,20 +43,13 @@ Se deben tener en cuenta las siguientes consideraciones:
 * Si `archivo-nuevo` ya existe, se sobreescribe.
 * Los permisos de `archivo-nuevo` deben ser `0644`.
 
-Además, deben utilizar **únicamente** las siguientes llamadas al sistema:
-
-* [`open()`](http://man7.org/linux/man-pages/man2/open.2.html)
-* [`read()`](http://man7.org/linux/man-pages/man2/read.2.html)
-* [`write()`](http://man7.org/linux/man-pages/man2/write.2.html)
-* [`close()`](http://man7.org/linux/man-pages/man2/close.2.html)
-
 ## Ejercicio 3 - Señales
 
 Completar el programa `ouch.c` para que cada vez que reciba la señal `SIGINT` imprima por la _salida estándar_ `Ouch!`. El programa debe terminar luego recibir 5 señales.
 
 Para atrapar la señal se debe emplear la llamada al sistema [`sigaction()`](http://man7.org/linux/man-pages/man2/sigaction.2.html). Utilizar la llamada al sistema [`pause()`](http://man7.org/linux/man-pages/man2/pause.2.html) para evitar realizar una espera activa.
 
-La señal `SIGINT` puede ser disparada desde el teclado, mediante la combinación `Ctrl+C` (que en la jerga se indica como `^C`).
+La señal `SIGINT` puede ser disparada desde el teclado, mediante la combinación `Ctrl+C` (que en la jerga se indica como `^C`). Para terminar la ejecución del programa, utilizar `Ctrl+\`.
 
 ## Ejercicio 4 - Traza de llamadas al sistema
 
@@ -79,9 +80,11 @@ Las últimas lineas muestran como el proceso `init` crea y ejecuta el programa `
 
 Agregar en el directorio del Laboratorio:
 
-* Una copia del archivo `syscall.c` modificado (ejecutar `git add syscall.c` para agregarlo al _commit_).
+* Una copia del archivo `syscall.c` modificado.
 
-* Un archivo de texto donde este el resultado de ejecutar el comando `echo hola`, y se explique brevemente para que se invocan las llamadas al sistema que aparecen.
+* Un archivo de texto con el resultado de ejecutar el comando `echo hola` y una breve explicación de para que se invocan las llamadas al sistema que aparecen.
+
+Recordar ejecutar `git add` para agregarlo los nuevos archivos al _commit_.
 
 ## Ejercicio 5 - Implementar una nueva llamada al sistema
 
@@ -95,7 +98,7 @@ Para probar la nueva llamada al sistema, usar el archivo `date.c` como base para
 
 ### Entrega
 
-Agregar en el directorio del Laboratorio un archivo de texto donde se explique brevemente las modificaciones realizadas en cada uno de los archivos de _xv6_ que hayan modificado. Recordar utilizar `git add` para que Git agregue este archivo en el _commit_.
+Agregar en el directorio del Laboratorio un archivo de texto donde se explique brevemente las modificaciones realizadas en cada uno de los archivos de _xv6_ que hayan modificado. Recordar utilizar `git add` para agregar el archivo al _commit_.
 
 ---
 
