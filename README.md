@@ -19,7 +19,7 @@ $ strace bin/hola > /dev/null
 
 Responder:
 
-1. Identificar cuáles son las llamadas al sistema utilizadas por las funciones de biblioteca `printf` y `exit`.
+1. Identificar que llamadas al sistema utilizan las funciones de biblioteca `printf` y `exit`.
 2. Describir los parámetros que se utilizan en la invocación de la llamada al sistema que se encarga de imprimir el mensaje en la _salida estándar_.
 
 ## Ejercicio 2 - Llamadas al sistema para archivos
