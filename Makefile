@@ -2,7 +2,7 @@ CC=gcc
 BIN=./bin
 CFLAGS=-Wall -g
 
-PROG=hola ej2 ej3 sh
+PROG=hola copy ouch
 
 LIST=$(addprefix $(BIN)/, $(PROG))
 
