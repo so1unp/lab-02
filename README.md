@@ -71,15 +71,7 @@ Identificada entonces la terminal en donde estamos trabajando, responder lo sigu
 
 * ¿Qué sucede al ejecutar `copy /dev/pts/0 test.txt`? (Usar `Ctrl+D` para salir)
 
-## Ejercicio 4 - Señales
-
-Completar el programa `ouch.c` para que cada vez que reciba la señal `SIGINT` imprima por la _salida estándar_ `Ouch!`. El programa debe terminar luego recibir 5 señales.
-
-Para atrapar la señal se debe emplear la llamada al sistema [`sigaction()`](http://man7.org/linux/man-pages/man2/sigaction.2.html). Utilizar la llamada al sistema [`pause()`](http://man7.org/linux/man-pages/man2/pause.2.html) para evitar realizar una espera activa.
-
-La señal `SIGINT` puede ser disparada desde el teclado, mediante la combinación `Ctrl+C` (que en la jerga se indica como `^C`). Para terminar la ejecución del programa, utilizar `Ctrl+\`.
-
-## Ejercicio 5 - Traza de llamadas al sistema
+## Ejercicio 4 - Traza de llamadas al sistema
 
 En este ejercicio, se modificara el _kernel_ de _xv6_ para que imprima un mensaje cada vez que se invoca una llamada al sistema. Este mensaje indicará el nombre de la llamada al sistema ejecutada y el valor que retorna.
 
@@ -114,7 +106,7 @@ Agregar en el directorio del Laboratorio:
 
 Recordar ejecutar `git add` para agregarlo los nuevos archivos al _commit_.
 
-## Ejercicio 6 - Implementar una nueva llamada al sistema
+## Ejercicio 5 - Implementar una nueva llamada al sistema
 
 Este ejercicio vamos a modificar nuevamente el _kernel_ de a _xv6_, para agregar una **nueva llamada al sistema**.
 
