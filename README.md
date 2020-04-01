@@ -1,6 +1,6 @@
 # Laboratorio 2 - Llamadas al Sistema
 
-En este laboratorio vamos a ver las llamadas al sistema relacionadas con archivos y señales en Linux. Además, se verá la implementación de las llamadas al sistema en _xv6_.
+En este laboratorio vamos a ver las llamadas al sistema relacionadas con archivos. Además, se verá la implementación de las llamadas al sistema en _xv6_.
 
 _Nota_: las respuestas a las preguntas en los ejercicios pueden incluirlas en un archivo de texto con el nombre `respuestas.txt`.
 
