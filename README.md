@@ -4,6 +4,8 @@ En este laboratorio vamos a ver las llamadas al sistema relacionadas con archivo
 
 _Nota_: las respuestas a las preguntas en los ejercicios pueden incluirlas en un archivo de texto con el nombre `respuestas.txt`.
 
+:calendar: Fecha de entrega: 09/04
+
 ## Ejercicio 1
 
 El programa `hola.c` imprime el mensaje `¡Hola Mundo!` en la _salida estándar_, utilizando la función de biblioteca [`printf()`](http://man7.org/linux/man-pages/man3/printf.3.html).
