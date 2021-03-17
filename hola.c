@@ -1,10 +1,15 @@
-#include <stdio.h>
-#include <stdlib.h>
+/*
+ * Imprime un saludo por la salida estándar.
+ */
+
+#include <stdio.h>      // printf()
+#include <stdlib.h>     // exit()
 
 int main(int argc, char *argv[])
 {
-    // Imprime un saludo en la salida estándar.
+    // Imprime el saludo en la salida estándar.
     printf("¡Hola Mundo!\n");
-    // Termina el proceso.
+
+    // Termina la ejecución del proceso.
     exit(EXIT_SUCCESS);
 }
