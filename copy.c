@@ -1,9 +1,10 @@
 /*
- * Este programa debe copiar un archivo en otro. Los archivos deben
- * ser indicados en la linea de comandos. Si el archivo origen no 
- * existe, se debe notificarlo y terminar. Si el archivo destino ya
- * existe, se debe sobreescribir. Los permisos en caso de crear el 
- * archivo destino deben ser 0644.
+ * Copia un archivo.
+ *
+ * Los archivos deben ser indicados en la linea de comandos. Si el 
+ * archivo origen no existe, se debe notificarlo y terminar. Si el 
+ * archivo destino ya existe, se debe sobreescribir. Los permisos 
+ * en caso de crear el archivo destino deben ser 0644.
  *
  * Utilizar unicamente las siguientes llamadas al sistema:
  * - read(): lee bytes desde un descriptor de archivo. 
