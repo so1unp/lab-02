@@ -72,11 +72,7 @@ Las últimas lineas muestran como el proceso `init` crea y ejecuta el programa `
 
 ### Entrega
 
-Agregar en el repositorio del Laboratorio:
-
-* Una copia del archivo `syscall.c` modificado.
-
-* Un archivo de texto con el resultado de ejecutar el comando `echo hola` y una explicación de por que se invocan las llamadas al sistema que aparecen.
+Agregar en el repositorio del Laboratorio un archivo de texto con el resultado de ejecutar el comando `echo hola` y una explicación de por que se invocan las llamadas al sistema que aparecen.
 
 ## Ejercicio 4 - Implementar una nueva llamada al sistema
 
@@ -88,6 +84,10 @@ Para realizar la implementación, utilizar como base el código fuente de alguna
 
 Para probar la nueva llamada al sistema, usar el archivo `answer.c`, que invoca la llamada al sistema e imprime el resultado.  Copiar el archivo en el directorio de *xv6*. Luego, agregar `answer.c` a la lista `UPROGS` del `Makefile` para que sea compilado como un programa de usuario.
 
+### Entrega
+
+Agregar en el directorio del Laboratorio un archivo de texto donde se explique brevemente las modificaciones realizadas en cada uno de los archivos de _xv6_ que hayan modificado. Recordar utilizar `git add` para agregar el archivo al _commit_.
+
 ### Adicional
 
 Implementar otra llamada al sistema que retorne al usuario la fecha UTC actual del sistema.
@@ -96,9 +96,6 @@ Para leer el reloj del sistema y obtener la fecha UTC, hay que usar la función 
 
 Para probar la nueva llamada al sistema, usar el archivo `date.c` como base para un programa que invoca la llamada al sistema e imprime por la salida estándar la fecha UTC.
 
-### Entrega
-
-Agregar en el directorio del Laboratorio un archivo de texto donde se explique brevemente las modificaciones realizadas en cada uno de los archivos de _xv6_ que hayan modificado. Recordar utilizar `git add` para agregar el archivo al _commit_.
 
 ---
 
