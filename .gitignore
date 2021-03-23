@@ -53,6 +53,7 @@ dkms.conf
 
 # Backup files
 *~
+*.swp
 
 # HTML, PDF
 *.pdf
