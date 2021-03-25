@@ -10,18 +10,18 @@ _Nota_: las respuestas a las preguntas en los ejercicios pueden incluirlas en un
 
 El programa `hola.c` imprime el mensaje `¡Hola Mundo!` en la _salida estándar_, utilizando la función de biblioteca [`printf()`](http://man7.org/linux/man-pages/man3/printf.3.html).
 
-Compilar el programa con el comando `make hola` y ejecutarlo utilizando el comando `strace`, como se indica a continuación, para ver cuales son llamadas al sistema que utiliza:
+Compilar el programa (`make hola`) y ejecutarlo utilizando el comando `strace`, como se indica a continuación, para ver cuales son llamadas al sistema que utiliza:
 
 ```bash
 $ make hola
 $ strace bin/hola > /dev/null
 ```
 
-**Nota**: mediante `> /dev/null` se redirije la _salida estándar_ de `bin/hola` al archivo especial del sistema `/dev/null`, que descarta cualquier dato que se escriba en el mismo. De esta manera, se evita que la salida del comando `hola` se mezcle con la de `strace`.
+**Nota**: `> /dev/null` redirije la _salida estándar_ de `bin/hola` al archivo especial del sistema `/dev/null`, que descarta todo lo que se escriba en el mismo. Así se evita que la salida del comando `hola` se mezcle con la de `strace`.
 
 Responder:
 
-1. Identificar que llamadas al sistema utilizan las funciones de biblioteca `printf` y `exit`.
+1. Identificar que llamadas al sistema utilizan las funciones de biblioteca `printf()` y `exit()`.
 2. Describir los parámetros que se utilizan en la invocación de la llamada al sistema que se encarga de imprimir el mensaje en la _salida estándar_.
 
 ## Ejercicio 2 - Uso de las llamadas al sistema para archivos
@@ -41,15 +41,15 @@ Para implementarlo se deben utilizar **únicamente** las siguientes llamadas al 
 
 Se deben tener en cuenta las siguientes consideraciones:
 
-* Si `archivo-original` no existe, entonces el programa debe notificarlo al usuario y terminar la ejecución. Se debe indicar al entorno que el programa falló, retornando `EXIT_FAILURE`.
-* Si `archivo-nuevo` ya existe, se sobreescribe.
-* Los permisos de `archivo-nuevo` deben ser `0644`.
+* Si `archivo-origen` no existe, el programa debe notificar el error al usuario y terminar la ejecución. Se debe indicar al entorno que el programa falló, retornando `EXIT_FAILURE`.
+* Si `archivo-destino` ya existe, se sobreescribe.
+* Los permisos de `archivo-destino` deben ser `0644`.
 
 ## Ejercicio 3 - Traza de llamadas al sistema
 
 En este ejercicio, se modificara el _kernel_ de _xv6_ para que imprima un mensaje cada vez que se invoca una llamada al sistema. Este mensaje indicará el nombre de la llamada al sistema ejecutada y el valor que retorna.
 
-Para esto, se debe modificar la función `syscall()` en el archivo `syscall.c`. Esta función es ejecutada por el sistema operativo cuando se detecta que una _interrupción por software_ ha sido generada desde un proceso de usuario.
+Para esto, se debe modificar la función `syscall()` en el archivo `syscall.c`. Esta función es ejecutada por el _xv6_ cuando se detecta que una _interrupción por software_ ha sido generada desde un proceso de usuario.
 
 Una vez hecha la modificación, al compilar y ejecutar _xv6_ en QEMU se tendría que ver algo similar a esto:
 
