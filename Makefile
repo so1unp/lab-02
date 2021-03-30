@@ -1,8 +1,8 @@
 CC=gcc
 BIN=./bin
-CFLAGS=-Wall -g
+CFLAGS=-Wall -Werror -g
 
-PROG=hola copy
+PROG=hola copy 
 
 LIST=$(addprefix $(BIN)/, $(PROG))
 
@@ -17,4 +17,4 @@ $(BIN)/%: %.c
 
 .PHONY: clean
 clean:
-	rm -f $(BIN)/ej* $(BIN)/hola $(BIN)/sh
+	rm -f $(LIST)
