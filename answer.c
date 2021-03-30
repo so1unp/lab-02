@@ -1,4 +1,8 @@
-// Copiar este archivo en el directorio donde tengan xv6
+/*
+ * Imprime el numéro 42.
+ *
+ * Nota: copiar este programa en el directorio de xv6.
+ */
 
 #include "types.h"
 #include "user.h"
