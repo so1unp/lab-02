@@ -17,7 +17,8 @@ if [ -f "bin/copy" ]; then
 
     printf "\tProbando copia de un archivo: "
     bin/copy copy.c copia-de-copy.c > /dev/null 2>&1
-    if [ "$(diff copy.c copia-de-copy.c)" = "" ]; then
+    diff="$(diff copy.c copia-de-copy.c 2>/dev/null)"
+    if [ "$(echo $?)" = 0 ] && [ "$diff" = "" ] ; then
         printf "Ok\n"
         exec2=true
     else
@@ -26,8 +27,8 @@ if [ -f "bin/copy" ]; then
     fi
 
     printf "\tVerificando permisos del archivo nuevo: "
-    perms=$(ls -l copia-de-copy.c | awk '{print $1}')
-    if [ "$perms" = "-rw-r--r--" ]; then
+    perms=$(ls -l copia-de-copy.c 2>/dev/null | awk '{print $1}')
+    if [ "$(echo $?)" = 0 ] && [ "$perms" = "-rw-r--r--" ]; then
         printf "Ok\n"
         exec3=true
     else
