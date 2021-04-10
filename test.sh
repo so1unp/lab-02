@@ -59,6 +59,7 @@ if [ -f "bin/copy" ]; then
         printf "Fallo\n"
         exec5=false
     fi
+    rm -f copia-de-no-existes.c > /dev/null 2>&1
 
     printf "\tProbando copiar un archivo a un directorio sin permisos: "
     bin/copy copy.c /copy.c > /dev/null 2>&1
