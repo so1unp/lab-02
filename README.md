@@ -42,7 +42,7 @@ Para implementarlo se deben utilizar **únicamente** las siguientes llamadas al 
 Se deben tener en cuenta las siguientes consideraciones:
 
 * Si `archivo-origen` no existe, el programa debe notificar el error al usuario y terminar la ejecución. Se debe indicar al entorno que el programa falló, retornando `EXIT_FAILURE`.
-* Si `archivo-destino` ya existe, se sobreescribe.
+* Si `archivo-destino` ya existe, se trunca.
 * Los permisos de `archivo-destino` deben ser `0644`.
 
 ## Ejercicio 3 - Traza de llamadas al sistema
