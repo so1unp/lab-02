@@ -76,9 +76,9 @@ Agregar en el repositorio del Laboratorio un archivo de texto con el resultado d
 
 ## Ejercicio 4 - Implementar una nueva llamada al sistema
 
-Este ejercicio vamos a modificar nuevamente el _kernel_ de a _xv6_, para agregar una **nueva llamada al sistema**.
+Este ejercicio vamos a modificar nuevamente el _kernel_ de _xv6_ para agregar una **nueva llamada al sistema**.
 
-La nueva llamada al sistema deberá retornar al usuario el sentido de la vida, el universo y todo lo demás: el número **42**.
+La nueva llamada al sistema retornará al usuario el sentido de la vida, el universo y todo lo demás: el número **42**.
 
 Para realizar la implementación, utilizar como base el código fuente de alguna otra llamada al sistema ya existente, como por ejemplo `sys_uptime()` o `sys_getpid()`.
 
