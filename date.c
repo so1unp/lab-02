@@ -12,6 +12,7 @@ int main(int argc, char *argv[])
 {
   struct rtcdate r;
 
+  // se invoca la llamada al sistema date()
   if (date(&r)) {
     printf(2, "date failed\n");
     exit();
