@@ -2,7 +2,7 @@ CC=gcc
 BIN=./bin
 CFLAGS=-Wall -Werror -g
 
-PROG=hola copy 
+PROG=hola safecopy 
 
 LIST=$(addprefix $(BIN)/, $(PROG))
 
