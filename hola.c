@@ -7,8 +7,8 @@
 
 int main(int argc, char *argv[])
 {
-    // Imprime el saludo en la salida estándar.
-    printf("¡Hola Mundo!\n");
+    // Imprime un saludo en la salida estándar.
+    puts("¡Hola Mundo!\n");
 
     // Termina la ejecución del proceso.
     exit(EXIT_SUCCESS);
