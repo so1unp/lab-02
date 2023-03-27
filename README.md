@@ -20,12 +20,12 @@ Responder lo siguiente (en un archivo con nombre `ej1.txt`):
 1. Identificar que llamadas al sistema utilizan las funciones de biblioteca `printf()` y `exit()`.
 2. Describir los parámetros que se utilizan en la llamada al sistema que invoca `printf()`.
 
-## Ejercicio 2 - Uso de las llamadas al sistema para archivos
+## Ejercicio 2 - llamadas al sistema para archivos
 
-Completar el programa `safecopy.c` para que permita realizar una copia de un archivo:
+Completar el programa `scopy.c` para que permita realizar una copia del archivo indicado:
 
 ```bash
-$ safecopy archivo-origen archivo-destino
+$ scopy archivo-origen archivo-destino
 ```
 
 Para implementarlo se deben utilizar *únicamente* las siguientes llamadas al sistema:
@@ -35,9 +35,11 @@ Para implementarlo se deben utilizar *únicamente* las siguientes llamadas al si
 * [`write()`](http://man7.org/linux/man-pages/man2/write.2.html)
 * [`close()`](http://man7.org/linux/man-pages/man2/close.2.html)
 
-Se deben tener en cuenta las siguientes consideraciones:
+Tener en cuenta:
 
-* Si `archivo-origen` no existe, el programa debe notificar el error al usuario y terminar la ejecución. Se debe indicar al entorno que el programa falló, retornando `EXIT_FAILURE`.
+* Se debe indicar al entorno el resultado de la ejecución del programa, retornando `EXIT_SUCCESS` o `EXIT_FAILURE`.
+* Si los paráemtros `archivo-origen` y `archivo-destino` no son indicados, se deben notificar el error al usuario y finalizar la ejecución.
+* Si `archivo-origen` no existe, el programa debe notificar el error al usuario y terminar la ejecución.
 * Si `archivo-destino` existe, el programa debe notificar al usuario y terminar la ejecución, sin realizar la copia (no se sobreescribe el archivo).
 * `archivo-destino` debe ser creado con permisos `0644`.
 
