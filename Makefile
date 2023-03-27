@@ -1,8 +1,8 @@
 CC=gcc
 BIN=./bin
-CFLAGS=-Wall -Werror -g
+CFLAGS=-g -Wall -Wextra -Wshadow -Wconversion -Wunreachable-code
 
-PROG=hola safecopy 
+PROG=hola scopy 
 
 LIST=$(addprefix $(BIN)/, $(PROG))
 
