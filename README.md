@@ -4,9 +4,9 @@ En este laboratorio vamos a ver las llamadas al sistema, especialmente las relac
 
 ## Ejercicio 1
 
-El programa `hola.c` imprime el mensaje `¡Hola Mundo!` en la _salida estándar_, utilizando la función de biblioteca [`printf()`](http://man7.org/linux/man-pages/man3/printf.3.html).
+El programa `hola.c` imprime el mensaje `¡Hola Mundo!` en la _salida estándar_ utilizando la función de biblioteca [`puts()`](http://man7.org/linux/man-pages/man3/puts.3.html).
 
-Compilar el programa (`make hola`) y ejecutarlo utilizando el comando `strace`, como se indica a continuación, para ver cuales son llamadas al sistema que utiliza durante su ejecución:
+Compilar el programa (`make hola`) y ejecutarlo mediante el comando `strace`, como se indica a continuación, para obtener las llamadas al sistema que utiliza durante su ejecución:
 
 ```bash
 $ make hola
@@ -17,8 +17,8 @@ $ strace bin/hola > /dev/null
 
 Responder lo siguiente (en un archivo con nombre `ej1.txt`):
 
-1. Identificar que llamadas al sistema utilizan las funciones de biblioteca `printf()` y `exit()`.
-2. Describir los parámetros que se utilizan en la llamada al sistema que invoca `printf()`.
+1. Identificar cuales son las llamadas al sistema que invocan las funciones de biblioteca `puts()` y `exit()`.
+2. Describir los parámetros que utiliza la llamada al sistema invocada por `puts()`.
 
 ## Ejercicio 2 - llamadas al sistema para archivos
 
@@ -38,16 +38,17 @@ Para implementarlo se deben utilizar *únicamente* las siguientes llamadas al si
 Tener en cuenta:
 
 * Se debe indicar al entorno el resultado de la ejecución del programa, retornando `EXIT_SUCCESS` o `EXIT_FAILURE`.
-* Si los paráemtros `archivo-origen` y `archivo-destino` no son indicados, se deben notificar el error al usuario y finalizar la ejecución.
+* Si los parámetros `archivo-origen` y `archivo-destino` no son indicados, se deben notificar el error al usuario y finalizar la ejecución.
 * Si `archivo-origen` no existe, el programa debe notificar el error al usuario y terminar la ejecución.
-* Si `archivo-destino` existe, el programa debe notificar al usuario y terminar la ejecución, sin realizar la copia (no se sobreescribe el archivo).
+* Si `archivo-destino` existe, el programa debe notificar al usuario y terminar la ejecución (no se sobreescribe el archivo).
 * `archivo-destino` debe ser creado con permisos `0644`.
+* Pueden evaluar su implementación ejecutando el _script_ `test.sh`.
 
 ## Ejercicio 3 - Traza de llamadas al sistema
 
-En este ejercicio, se modificara el _kernel_ de _xv6_ para que imprima un mensaje cada vez que se invoca una llamada al sistema. Este mensaje indicará el nombre de la llamada al sistema ejecutada y el valor que retorna.
+En este ejercicio se modificara el _kernel_ de _xv6_ para que imprima un mensaje cada vez que se invoca una llamada al sistema. Este mensaje indicará la llamada al sistema que se ejecuta y el valor que retorna.
 
-Para esto, se debe modificar la función `syscall()` en el archivo `syscall.c`. Esta función es ejecutada por el _xv6_ cuando se detecta que una _interrupción por software_ ha sido generada desde un proceso de usuario.
+Se debe modificar la función `syscall()` en el archivo `syscall.c`. Esta función es ejecutada por _xv6_ cuando se detecta que una _interrupción por software_ ha sido generada desde un proceso de usuario.
 
 Una vez hecha la modificación, al compilar y ejecutar _xv6_ en QEMU se tendría que ver algo similar a esto:
 
@@ -74,7 +75,7 @@ Agregar en el repositorio del laboratorio un archivo de texto con el resultado d
 
 ## Ejercicio 4 - Implementar una nueva llamada al sistema
 
-Este ejercicio vamos a modificar nuevamente el _kernel_ de _xv6_ para agregar una **nueva llamada al sistema** que retorne al usuario el sentido de la vida, el universo y todo lo demás: el número **42**.
+En este ejercicio vamos a modificar el _kernel_ de _xv6_ para agregar una **nueva llamada al sistema** que retorne al usuario el número **42** (el sentido de la vida, el universo y todo lo demás).
 
 Para realizar la implementación, utilizar como base el código fuente de alguna otra llamada al sistema ya existente, como por ejemplo `sys_uptime()` o `sys_getpid()`.
 
