@@ -2,7 +2,7 @@ CC=gcc
 BIN=./bin
 CFLAGS=-g -Wall -Wextra -Wshadow -Wconversion -Wunreachable-code
 
-PROG=hola scopy 
+PROG=hola scopy sh
 
 LIST=$(addprefix $(BIN)/, $(PROG))
 
@@ -21,3 +21,9 @@ test:
 .PHONY: clean
 clean:
 	rm -f $(LIST)
+
+dist:
+	git archive --format zip --output ${USER}-lab02.zip master
+
+html:
+	pandoc -o README.html -f gfm README.md
