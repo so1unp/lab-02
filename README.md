@@ -8,23 +8,24 @@ El programa `hola.c` imprime el mensaje `¡Hola Mundo!` en la _salida estándar_
 
 Compilar el programa (`make hola`) y ejecutarlo mediante el comando `strace`, como se indica a continuación, para obtener las llamadas al sistema que utiliza durante su ejecución:
 
-```bash
+```console
 $ make hola
 $ strace bin/hola > /dev/null
 ```
 
 **Nota**: `> /dev/null` redirije la _salida estándar_ de `bin/hola` al archivo especial del sistema `/dev/null`, que descarta todo lo que se escriba en el mismo. De esta manera evitamos que la salida del comando `hola` se mezcle con la de `strace`.
 
-Responder lo siguiente (en un archivo con nombre `ej1.txt`):
+Responder lo siguiente:
 
-1. Identificar cuales son las llamadas al sistema que invocan las funciones de biblioteca `puts()` y `exit()`.
-2. Describir los parámetros que utiliza la llamada al sistema invocada por `puts()`.
+1. ¿Cuantas llamadas al sistema invoca el programa?
+2. Identificar cuales son las llamadas al sistema que invocan las funciones de biblioteca `puts()` y `exit()`.
+3. Describir los parámetros que utiliza la llamada al sistema invocada por `puts()`.
 
 ## Ejercicio 2 - llamadas al sistema para archivos
 
 Completar el programa `scopy.c` para que permita realizar una copia del archivo indicado:
 
-```bash
+```console
 $ scopy archivo-origen archivo-destino
 ```
 
@@ -44,6 +45,27 @@ Tener en cuenta:
 * `archivo-destino` debe ser creado con permisos `0644`.
 * Pueden evaluar su implementación ejecutando el _script_ `test.sh`.
 
+## Ejercicio 4: Interprete de comandos
+
+El programa `sh.c` es un interprete de comandos (un _shell_) que no tiene implementada la funcionalidad de ejecución de programas o de redirección de entrada/salida. Al hjecutarlo, imprime un símbolo de sistema (`$`) y espera ordenes. Para terminar su ejecución teclear `^C`.
+
+### 4.1: Ejecución de comandos
+
+Implementar la ejecución de comandos. El genera una estructura `execcmd` que contiene el comando a ejecutar y sus parámetros (si los hubiera). Para implementar la ejecución de comandos, deben completar el caso `' '` en la función `runcmd()`, utilizando la llamada a sistema [`exec()`](http://man7.org/linux/man-pages/man3/exec.3.html). Se debe imprimir un mensaje de error si `exec()` falla, utilizando la función [`perror()`](http://man7.org/linux/man-pages/man3/perror.3.html).
+
+### 4.2: Redirección de E/S
+
+Implementar redirección de E/S mediante los operadores `<` y `>`, de manera que el shell permita ejecutar comandos como:
+
+```
+$ echo "sistemas operativos" > so.txt
+$ cat < so.txt
+sistemas operativos
+$
+```
+
+El parser implementado en el shell ya reconoce estos operadores y genera una estructura `redircmd` con los datos necesarios para implementar la redirección. Deben completar el código necesario en la función `runcmd()`. Consultar las llamadas al sistema [`open()`](http://man7.org/linux/man-pages/man2/open.2.html) y [`close()`](http://man7.org/linux/man-pages/man2/close.2.html). Imprimir un mensaje de error si alguna de las llamadas al sistema, utilizando [`perror()`](http://man7.org/linux/man-pages/man3/perror.3.html). Verificar los permisos con los que se crea el archivo.
+
 ## Ejercicio 3 - Traza de llamadas al sistema
 
 En este ejercicio se modificara el _kernel_ de _xv6_ para que imprima un mensaje cada vez que se invoca una llamada al sistema. Este mensaje indicará la llamada al sistema que se ejecuta y el valor que retorna.
@@ -52,7 +74,7 @@ Se debe modificar la función `syscall()` en el archivo `syscall.c`. Esta funci�
 
 Una vez hecha la modificación, al compilar y ejecutar _xv6_ en QEMU se tendría que ver algo similar a esto:
 
-```bash
+```console
 xv6...
 cpu0: starting
 sys_fstat -> 0
@@ -79,7 +101,15 @@ En este ejercicio vamos a modificar el _kernel_ de _xv6_ para agregar una **nuev
 
 Para realizar la implementación, utilizar como base el código fuente de alguna otra llamada al sistema ya existente, como por ejemplo `sys_uptime()` o `sys_getpid()`.
 
-Para probar la nueva llamada al sistema, usar el archivo `answer.c`, que invoca la llamada al sistema e imprime el resultado.  Copiar el archivo en el directorio de *xv6*. Luego, agregar `answer.c` a la lista `UPROGS` del `Makefile` para que sea compilado como un programa de usuario.
+Se deben modificar los siguientes archivos del sistema operativo:
+
+- `usys.S`: implementa el mecanismo de invocación de una llamada al sistema desde el nivel de usuario.
+- `user.h`: prototipos de las funciones de biblioteca para el usuario.
+- `syscall.h`: identificadores de cada una de las llamadas al sistema.
+- `syscall.c`: código que invoca la llamadas al sistema dentro del _kernel_.
+- `sysproc.c`: aquí implementaremos la llamada al sistema, aunque podría estar en cualquier otro archivo `.c`.
+
+El programa `answer.c` invoca la llamada al sistema e imprime el resultado. El código esta comentado, dado que no existe la llamada. Una vez que la hayan implementado, descomentar el código en el programa, recompilar y ejecutar nuevamente _xv6_ para verificar que se invoque correctamente la nueva llamada.
 
 ### Entrega
 
