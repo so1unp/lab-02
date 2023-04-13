@@ -1,3 +1,7 @@
+# OBSOLETO
+
+Ver [Laboratorios](https://github.com/so1unp/laboratorios/).
+
 # Laboratorio 2 - Llamadas al Sistema
 
 En este laboratorio vamos a ver las llamadas al sistema, especialmente las relacionadas con archivos. Además, se verá la implementación de las llamadas al sistema en _xv6_.
